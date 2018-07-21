@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CriarTabelaUsuario extends Migration
+class CreateTasksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,12 @@ class CriarTabelaUsuario extends Migration
      */
     public function up()
     {
-        Schema::create('usuario', function (Blueprint $table) {
+        Schema::create('tasks', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nome');
-            $table->string('email')->unique();
-            $table->string('telefone');
-            $table->string('aniversario');
-            $table->string('senha');
-            $table->binary('avatar')->nullable();
-            $table->rememberToken();
+            $table->string('title');
+            $table->string('status');
+            $table->string('description')->nullable();
+
             $table->timestamps();
         });
     }

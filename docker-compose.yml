@@ -10,10 +10,10 @@ services:
     ports:
       - "3306:3306"
     environment:
-      - MYSQL_ROOT_PASSWORD=aiqsede
-      - MYSQL_DATABASE=aiqsede
-      - MYSQL_USER=aiqsede
-      - MYSQL_PASSWORD=aiqsede
+      - MYSQL_ROOT_PASSWORD=usertasklist
+      - MYSQL_DATABASE=usertasklist
+      - MYSQL_USER=usertasklist
+      - MYSQL_PASSWORD=usertasklist
 
   # PHPMyAdmin
   phpmyadmin:
@@ -25,9 +25,9 @@ services:
       - mysql
     environment:
       PMA_ARBITRARY: 1
-      MYSQL_USER: aiqsede
-      MYSQL_PASSWORD: aiqsede
-      MYSQL_ROOT_PASSWORD: aiqsede
+      MYSQL_USER: usertasklist
+      MYSQL_PASSWORD: usertasklist
+      MYSQL_ROOT_PASSWORD: usertasklist
 
   # PHP (with Apache)
   app:
