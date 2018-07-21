@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Http\Models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class RecuperarSenha extends Model
+class Tasks extends Model
 {
-    protected $table = 'recuperar_senha';
-
     protected $hidden = [
         'created_at',
+        'updated_at'
     ];
 }

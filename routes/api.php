@@ -1,15 +1,19 @@
 <?php
 
-Route::post('login', 'LoginController@efetuarLogin');
+Route::post('login', 'LoginController@login');
 
 Route::group([
   'middleware' => 'jwt.auth',
 ], function() {
-    Route::get('usuarios', 'UsuarioController@listarUsuarios'); // Realiza a listagem de todos os usuários cadastrados
-    Route::get('usuario/{usuario}', 'UsuarioController@dadosUsuario'); // Retorna os dados de um usuário específico
-    Route::post('usuario', 'UsuarioController@criarUsuario'); // Cria um usuário
-    Route::put('usuario/{usuario}', 'UsuarioController@editarUsuario'); // Edita um usuário específico
-    Route::delete('usuario/{usuario}', 'UsuarioController@deletarUsuario'); // Deleta um usuário específico
-    Route::post('usuario/{usuario}/avatar', 'UsuarioController@adicionarAvatar'); // Salva um avatar para o usuário
-    Route::delete('usuario/{usuario}/avatar', 'UsuarioController@deletarAvatar'); // Deleta o avatar do usuário
+    Route::post('users', 'UserController@createUser'); // Create an User
+    Route::get('users', 'UserController@listUsers'); // Return all existing Users
+    Route::get('users/{user}', 'UserController@userData'); // Return data from a specified User
+    Route::put('users/{user}', 'UserController@editUser'); // Edit data from a specified User
+    Route::delete('users/{user}', 'UserController@deleteUser'); // Delete an User
+
+    Route::post('tasks', 'TaskController@createTask'); // Create a Task
+    Route::get('tasks', 'TaskController@listTask'); // Return all existing Tasks
+    Route::get('tasks/{task}', 'TaskController@taskData'); // Return data from a specified Task
+    Route::put('tasks/{task}', 'TaskController@editTask'); // Edit data from a specified Task
+    Route::delete('tasks/{task}', 'TaskController@deleteTask'); // Delete a Task
 });

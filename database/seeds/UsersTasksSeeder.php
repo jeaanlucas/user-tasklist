@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\UsersTasks;
 
 class UsersTasksSeeder extends Seeder
 {
@@ -11,9 +12,9 @@ class UsersTasksSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users_tasks')->insert([
-            'user_id' => '1',
-            'task_id' => '1',
-        ]);
+        $usersTasks = new UsersTasks();
+        $usersTasks->user_id = '1';
+        $usersTasks->task_id = '1';
+        $usersTasks->save();
     }
 }

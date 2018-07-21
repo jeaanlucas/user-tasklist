@@ -1,15 +1,13 @@
 <?php
 
-namespace App\Http\Models;
+namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class Usuario extends Authenticatable
+class Users extends Authenticatable
 {
     use Notifiable;
-
-    protected $table = 'usuario';
 
     protected $hidden = [
         'created_at',

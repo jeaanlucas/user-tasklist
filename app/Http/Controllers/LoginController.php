@@ -13,7 +13,7 @@ class LoginController extends Controller
         $this->loginService = new LoginService();
     }
 
-    public function efetuarLogin(LoginRequest $request) {
+    public function login(LoginRequest $request) {
         return $this->loginService
             ->login($request);
     }

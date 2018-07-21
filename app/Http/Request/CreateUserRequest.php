@@ -5,7 +5,7 @@ namespace App\Http\Request;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Rules\CampoVazio;
 
-class CriarAvatarRequest extends FormRequest
+class CreateUserRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -15,7 +15,11 @@ class CriarAvatarRequest extends FormRequest
     public function rules()
     {
         return [
-            'avatar' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+            'cellphone' => 'required',
+            'birthday' => 'required',
+            'password' => 'required',
         ];
     }
 

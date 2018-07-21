@@ -1,29 +1,29 @@
 <?php
 
-namespace App\Http\Services;
+namespace App\Services;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use JWTAuth;
 use JWTFactory;
-use App\Http\Models\Usuario;
+use App\Models\Users;
 
 class LoginService
 {
     public function login($request) {
-        $usuario = Usuario::where(function ($query) use ($request) {
+        $user = Users::where(function ($query) use ($request) {
             $query->where('email', $request->email);
         })->first();
 
-        if (!Hash::check($request->senha, $usuario->senha)) {
-            return response()->json(['mensagem' => 'E-mail ou senha incorretos!'], 401);
+        if (!Hash::check($request->password, $user->password)) {
+            return response()->json(['mensagem' => 'Invalid e-mail!'], 401);
         }
 
-        return response()->json($this->geraTokenAcesso($usuario));
+        return response()->json($this->createAcessToken($user));
     }
 
-    private function geraTokenAcesso($usuario) {
-        $payload = JWTFactory::sub($usuario->id)->make();
+    private function createAcessToken($user) {
+        $payload = JWTFactory::sub($user->id)->make();
         $token = JWTAuth::encode($payload)->get();
 
         return [
