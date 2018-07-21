@@ -1,0 +1,41 @@
+# v2 syntax
+version: '2'
+
+services:
+  mysql:
+    image: ambientum/mysql:5.7
+    container_name: mysql
+    volumes:
+      - ./storage/app/mysql:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=aiqsede
+      - MYSQL_DATABASE=aiqsede
+      - MYSQL_USER=aiqsede
+      - MYSQL_PASSWORD=aiqsede
+
+  # PHPMyAdmin
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    ports:
+      - "8000:80"
+    links:
+      - mysql
+    environment:
+      PMA_ARBITRARY: 1
+      MYSQL_USER: aiqsede
+      MYSQL_PASSWORD: aiqsede
+      MYSQL_ROOT_PASSWORD: aiqsede
+
+  # PHP (with Apache)
+  app:
+    image: ambientum/php:7.2-nginx
+    container_name: app
+    volumes:
+      - .:/var/www/app
+    ports:
+      - "8081:8080"
+    links:
+      - mysql
