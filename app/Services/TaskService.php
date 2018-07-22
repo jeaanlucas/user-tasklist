@@ -5,59 +5,58 @@ namespace App\Services;
 use JWTAuth;
 use JWTFactory;
 use Image;
-use App\Models\Users;
+use App\Models\Tasks;
 
 class TaskService
 {
-    public function create($data) {
-        $users = new Users();
-        $users->name = $data->name;
-        $users->email = $data->email;
-        $users->cellphone = $data->cellphone;
-        $users->birthday = $data->birthday;
-        $users->password = bcrypt($data->password);
-        $users->save();
+    protected $tasks;
 
-        return response()->json(['mensagem' => 'User saved!'], 200);
+    public function __construct() {
+        $this->tasks = new Tasks();
+    }
+
+    public function create($data) {
+        $this->tasks->title = $data->title;
+        $this->tasks->status = $data->status;
+        $this->tasks->description = $data->description;
+        $this->tasks->save();
+
+        return response()->json(['mensagem' => 'Task saved!'], 200);
     }
 
     public function list() {
-        $users = new Users()::all();
-
-        return response()->json($users);
+        return response()->json($this->tasks::all());
     }
 
-    public function getData() {
-        return response()->json($this->montaListagemUsuarios($this->usuario::all()));
+    public function getData($id) {
+        return response()->json($this->tasks::find($id));
     }
 
     public function edit($id, $data) {
-        $users = new Users()::find($id);
+        $task = $this->tasks::find($id);
 
-        if (!$users) {
-            return response()->json(['mensagem' => 'Invalid User!'], 401);
+        if (!$task) {
+            return response()->json(['mensagem' => 'Invalid Task!'], 401);
         }
 
-        $users->name = $data->name;
-        $users->email = $data->email;
-        $users->cellphone = $data->cellphone;
-        $users->birthday = $data->birthday;
-        $users->password = bcrypt($data->password);
-        $users->save();
+        $task->title = $data->title;
+        $task->status = $data->status;
+        $task->description = $data->description;
+        $task->save();
 
-        return response()->json(['mensagem' => 'User edited!'], 200);
+        return response()->json(['mensagem' => 'Task edited!'], 200);
     }
 
     public function delete($id) {
-        $users = new Users()::find($id);
+        $task = $this->tasks::find($id);
 
-        if (!$users) {
-            return response()->json(['mensagem' => 'Invalid User!'], 401);
+        if (!$task) {
+            return response()->json(['mensagem' => 'Invalid Task!'], 401);
         }
 
-        $users->delete();
+        $task->delete();
 
-        return response()->json(['mensagem' => 'User deleted!'], 200);
+        return response()->json(['mensagem' => 'Task deleted!'], 200);
     }
 
 }

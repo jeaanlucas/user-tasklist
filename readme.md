@@ -1,3 +1,4 @@
+
 ## User Tasklist - Back End
 #### How to install?
 
@@ -31,3 +32,27 @@ One user is already created. He has a login and password:
 **Password** - *adm@123*
 
 *ALL CONTAINER INFORMATIONS ARE INSIDE THE ARCHIVE* **docker-compose.yml** *IN THE PROJECT ROOT*
+
+## API - Documentation Table
+### Login
+| NAME | HTTP | URL | BODY |
+|------|------|-----|------|
+| Login | POST | /api/login | `{"email", "password"}` |
+
+### Users
+| NAME | HTTP | URL | BODY |
+|------|------|-----|------|
+| Create User | POST | /api/users | `{"name", "email", "cellphone", "birthday", "password"}` |
+| Return all Users | GET | /api/users ||
+| Return information from a specified User | GET | /api/users/:user ||
+| Edit information from a specified User | PUT | /api/users/:user |`{"name", "email", "cellphone", "birthday", "password"}`|
+| Delete an User | DELETE | /api/users/:user ||
+
+### Tasks
+| NAME | HTTP | URL | BODY |
+|------|------|-----|------|
+| Create Task | POST | /api/tasks | `{"title", "status", "description"}` |
+| Return all Tasks | GET | /api/tasks ||
+| Return information from a specified Task | GET | /api/tasks/:task ||
+| Edit information from a specified Task | PUT | /api/tasks/:task |`{"title", "status", "description"}`|
+| Delete a Task | DELETE | /api/tasks/:task ||

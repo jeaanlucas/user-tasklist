@@ -8,7 +8,7 @@ use App\Http\Request\CreateUserRequest;
 
 class UserController extends Controller
 {
-    private $usersService;
+    protected $usersService;
 
     public function __construct() {
         $this->usersService = new UserService();
