@@ -6,7 +6,7 @@ Easy!
 
 Install [docker](https://goo.gl/JmnqnK).
 
-Now [docker compose](https://goo.gl/nzcP7q).
+Now, [docker compose](https://goo.gl/nzcP7q).
 
 Then, in the project execute the command (*this guy will up one container with PHP and MySql locally*):
 ```
